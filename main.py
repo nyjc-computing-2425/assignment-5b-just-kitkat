@@ -33,7 +33,16 @@ def read_csv(filename):
 
 # Part 2
 def filter_gender(enrolment_by_age, sex):
-    """a"""
+    """
+    Filter the enrolment list by sex
+
+    Arguments:
+    enrolment_by_age: list - a list containing enrolment info (nested list)
+    sex: string - "F" or "MF"
+
+    Return:
+    list: a list of similar structure to enrolment_by_age but only consisting of details where the "sex" column matches the "sex" argument
+    """
     new_data = []
     for data in enrolment_by_age:
         if data[2] == sex:
@@ -43,7 +52,15 @@ def filter_gender(enrolment_by_age, sex):
 
 # Part 3
 def sum_by_year(enrolment):
-    """a"""
+    """
+    Calculate the total enrolment number in each year
+
+    Arguments: 
+    enrolment: list - a nested list containing enrolment details
+
+    Return:
+    list: a list of lists where each element contains [year, total_enrolment]
+    """
     data = {}
     for item in enrolment:
         year = item[0]
@@ -59,7 +76,17 @@ def sum_by_year(enrolment):
 
 # Part 4
 def write_csv(filename, header, data):
-    """a"""
+    """
+    Write the header and data to a csv
+
+    Arguments:
+    filename: str - name of the file to write the data to
+    header: list - the header, where each element is a header
+    data: list - enrolment data
+
+    Return:
+    int - number of lines written to the file
+    """
     with open(filename, "w") as file:
         header[-1] += "\n"
         header = ",".join(header)
@@ -72,6 +99,8 @@ def write_csv(filename, header, data):
             to_write.append(",".join(i))
             to_write[-1] += "\n"
 
+        # remove the last newline to ensure "lines written" is accurate
+        to_write[-1] = to_write[-1][:-1]
         file.writelines(to_write)
         # calls file.close() automatically
 
@@ -82,5 +111,5 @@ def write_csv(filename, header, data):
 # You can write code below to call the above functions
 # and test the output
 # h,d=read_csv("pre-u-enrolment-by-age.csv")
-# write_csv("total-enrolment-by-year.csv",h,d)
+# print(write_csv("total-enrolment-by-year.csv",h,d))
 # Tests removed/commented out for submission
